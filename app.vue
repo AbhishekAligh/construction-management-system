@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HelloWorld />
-    Building a Construction Management System
+    <NuxtLoadingIndicator />
+    <NuxtPage />
   </div>
 </template>
