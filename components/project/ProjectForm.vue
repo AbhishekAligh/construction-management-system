@@ -21,6 +21,12 @@
                 <UFormGroup label="Total Hours" name="totalHours" required>
                     <UInput type="number" disabled v-model="state.totalHours" />
                 </UFormGroup>
+                <UButton label="Rate Card" @click="isOpen = true" />
+                <UModal v-model="isOpen">
+                    <div class="p-4">
+                        <CrewTable />
+                    </div>
+                </UModal>
             </div>
 
             <UButton type="submit">
@@ -53,6 +59,7 @@ const state = reactive({
     totalHours: 0
 
 })
+const isOpen = ref(false)
 // const data = []
 const crewCatalog = [{ name: 'Foremen', value: 20, }, { name: 'Operator', value: 30 }, { name: 'Labourer', value: 10 }]
 

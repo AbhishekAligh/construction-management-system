@@ -13,15 +13,15 @@ const columns = [{
 const crewMember = [{
     id: 1,
     crewType: 'Foremen',
-    hourlyRate: '10'
+    hourlyRate: '20'
 }, {
     id: 2,
     crewType: 'Operator',
-    hourlyRate: '20'
+    hourlyRate: '30'
 }, {
     id: 3,
     crewType: 'Labourer',
-    hourlyRate: '30'
+    hourlyRate: '10'
 
 }]
 </script>
