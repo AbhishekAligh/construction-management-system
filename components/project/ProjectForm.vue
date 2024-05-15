@@ -34,6 +34,7 @@
             </UButton>
         </UForm>
     </div>
+    <ProjectTable :data="data" />
 </template>
 
 <script setup lang="ts">
@@ -60,7 +61,7 @@ const state = reactive({
 
 })
 const isOpen = ref(false)
-// const data = []
+const data = ref([{}])
 const crewCatalog = [{ name: 'Foremen', value: 20, }, { name: 'Operator', value: 30 }, { name: 'Labourer', value: 10 }]
 
 
@@ -69,6 +70,16 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     console.log("Form Submit clicked");
     calculateHours()
     console.log((+event.data.crewType) * event.data.quantity * event.data.totalHours)
+    data.value.push(
+        {
+            crewType: (+event.data.crewType) == +20 ? 'Foremen' : +event.data.crewType === 10 ? 'Labourer' : 'Operator',
+            hourlyRate: +event.data.crewType,
+            quantity: +event.data.quantity,
+            hours: event.data.totalHours,
+            cost: (+event.data.crewType) * event.data.quantity * event.data.totalHours,
+        }
+    )
+    console.log(data.value[1]);
 }
 // const calculateCost = () => {
 

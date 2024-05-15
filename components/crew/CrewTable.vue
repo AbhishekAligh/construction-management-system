@@ -5,7 +5,8 @@ const columns = [{
 }, {
     key: 'crewType',
     label: 'Crew Type'
-}, {
+    },
+    {
     key: 'hourlyRate',
     label: 'Hourly Rate($)',
     sortable: true
