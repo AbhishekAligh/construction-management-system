@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   modules: ["@nuxt/ui", "@vueuse/motion/nuxt", "@nuxt/image"],
 
   colorMode: {
-    preference: "system", // default value of $colorMode.preference
+    preference: "light", // default value of $colorMode.preference
     fallback: "light", //
   },
 });
