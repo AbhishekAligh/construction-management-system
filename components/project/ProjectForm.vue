@@ -13,25 +13,26 @@
                     <UInput type="number" v-model="state.quantity" />
                 </UFormGroup>
                 <UFormGroup label="Start Time" name="startTime" required>
-                    <UInput type="time" v-model="state.startTime" />
+                    <UInput type="time" v-model="state.startTime" step="3600" />
                 </UFormGroup>
                 <UFormGroup label="End Time" name="endTime" required>
-                    <UInput type="time" v-model="state.endTime" @change="calculateHours" />
+                    <UInput type="time" v-model="state.endTime" @change="calculateHours" step="3600" />
                 </UFormGroup>
                 <UFormGroup label="Total Hours" name="totalHours" required>
                     <UInput type="number" disabled v-model="state.totalHours" />
                 </UFormGroup>
-                <UButton label="Rate Card" @click="isOpen = true" />
-                <UModal v-model="isOpen">
-                    <div class="p-4">
-                        <CrewTable />
-                    </div>
-                </UModal>
-            </div>
+                <UButton type="submit">
+                    Submit
+                </UButton>
 
-            <UButton type="submit">
-                Submit
-            </UButton>
+            </div>
+            <UButton label="Rate Card" @click="isOpen = true" />
+            <UModal v-model="isOpen">
+                <div class="p-4">
+                    <CrewTable />
+                </div>
+            </UModal>
+
         </UForm>
     </div>
     <ProjectTable :data="data" />
@@ -61,17 +62,17 @@ const state = reactive({
 
 })
 const isOpen = ref(false)
+const isOpen1 = ref(false)
 const data = ref([{}])
 const crewCatalog = [{ name: 'Foremen', value: 20, }, { name: 'Operator', value: 30 }, { name: 'Labourer', value: 10 }]
 
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-    // Do something with data
-    console.log("Form Submit clicked");
     calculateHours()
     console.log((+event.data.crewType) * event.data.quantity * event.data.totalHours)
     data.value.push(
         {
+            project: event.data.name,
             crewType: (+event.data.crewType) == +20 ? 'Foremen' : +event.data.crewType === 10 ? 'Labourer' : 'Operator',
             hourlyRate: +event.data.crewType,
             quantity: +event.data.quantity,
@@ -79,11 +80,9 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             cost: (+event.data.crewType) * event.data.quantity * event.data.totalHours,
         }
     )
-    console.log(data.value[1]);
+    // console.log(data.value[1]);
 }
-// const calculateCost = () => {
 
-// }
 const calculateHours = () => {
     if (state.startTime) {
         let [startTime, x] = state.startTime.split(":")
@@ -93,5 +92,4 @@ const calculateHours = () => {
         return state.totalHours
     }
 }
-// <UForm :schema=schema :state="state" class="space-y-4" @submit="onSubmit">
 </script>
