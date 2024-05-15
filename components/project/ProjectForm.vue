@@ -21,7 +21,7 @@
                 <UFormGroup label="Total Hours" name="totalHours" required>
                     <UInput type="number" disabled v-model="state.totalHours" />
                 </UFormGroup>
-                <UButton type="submit">
+                <UButton type="submit" class="mt-6">
                     Submit
                 </UButton>
 
