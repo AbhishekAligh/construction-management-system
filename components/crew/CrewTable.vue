@@ -28,5 +28,5 @@ const crewMember = [{
 
 <template>
     <UTable :columns="columns" :rows="crewMember"
-        class="shadow-[rgba(99,99,99,0.2)_0px_2px_8px_0px] my-24 mx-12 rounded-xl flex-1" />
+        class="shadow-[rgba(99,99,99,0.2)_0px_2px_8px_0px] my-24 mx-12 rounded-xl" />
 </template>
